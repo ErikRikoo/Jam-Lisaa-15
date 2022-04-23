@@ -8,6 +8,12 @@ using UnityEngine.Events;
 
 namespace Script.PlayerHandling
 {
+    enum State
+    {
+        Normal, Stunned, Slow, Boosted
+    }
+    
+    
     [RequireComponent(typeof(Rigidbody), typeof(ConstantForce), typeof(PlanetObjectPlacer))]
     public class PlayerStateManager : MonoBehaviour
     {
@@ -26,6 +32,7 @@ namespace Script.PlayerHandling
         private Rigidbody m_Rigidbody;
 
         private float m_OriginalLatitude;
+        private State m_State;
         
         [SerializeField,Range(-1, 1)] 
         private float m_CurrentPosition;
@@ -90,18 +97,33 @@ namespace Script.PlayerHandling
 
         public void Slow(float _slowRatio, float _slowDuration)
         {
+            if (m_State == State.Boosted || m_State == State.Stunned)
+            {
+                return;
+            }
+            
+            StopAllCoroutines();
+            m_State = State.Slow;
             ChangeSpeed(-_slowRatio, _slowDuration);
             m_OnSlow?.Invoke();
         }
 
         public void Boost(float _boostRatio, float _boostDuration)
         {
+            StopAllCoroutines();
+            m_State = State.Boosted;
             ChangeSpeed(_boostRatio, _boostDuration);
             m_OnBoost?.Invoke();
         }
         
         public void Stun(float _stunTime)
         {
+            if (m_State == State.Boosted)
+            {
+                return;
+            }
+            StopAllCoroutines();
+            m_State = State.Stunned;
             ChangeSpeed(-1, _stunTime);
             m_OnStun?.Invoke();
         }
@@ -113,16 +135,13 @@ namespace Script.PlayerHandling
                 UpdateCurrentPosition(m_PlanetSpeed.Value * _slowRatio);
                 yield return null;
             }
+
+            m_State = State.Normal;
         }
 
         private void UpdateCurrentPosition(float speed)
         {
             CurrentPosition += speed * 2 * Time.deltaTime;
         }
-
-        // public void Jump()
-        // {
-        //     m_Rigidbody.AddForce(transform.up * 200);
-        // }
     }
 }
