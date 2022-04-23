@@ -230,10 +230,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5450873952004164713, guid: e6d17b8fbb90f064fb2e90a3e048a7fd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ce203ca7bc291ad4dad202c779398880, type: 2}
     - target: {fileID: 5450873952084538101, guid: e6d17b8fbb90f064fb2e90a3e048a7fd, type: 3}
       propertyPath: m_Name
       value: Planet
