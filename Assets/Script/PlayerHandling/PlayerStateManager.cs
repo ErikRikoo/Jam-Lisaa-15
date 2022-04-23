@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using PlanetHandling;
 using UnityAtoms.BaseAtoms;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Script.PlayerHandling
 {
@@ -12,6 +14,12 @@ namespace Script.PlayerHandling
         [Header("Settings")]
         [SerializeField] private float m_GravityScale;
         [SerializeField] private FloatVariable m_PlanetSpeed;
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent m_OnBoost;
+        [SerializeField] private UnityEvent m_OnSlow;
+        [SerializeField] private UnityEvent m_OnStun;
+        
 
         private ConstantForce m_ConstantForce;
         private PlanetObjectPlacer m_ObjectPlacer;
@@ -24,6 +32,7 @@ namespace Script.PlayerHandling
 
         public float CurrentPosition
         {
+            get => m_CurrentPosition;
             set
             {
                 m_CurrentPosition = Mathf.Clamp(value, -1, 1);
@@ -74,9 +83,46 @@ namespace Script.PlayerHandling
             UpdateGravity();
         }
 
-        public void Jump()
+        private void ChangeSpeed(float _ratio, float _duration)
         {
-            m_Rigidbody.AddForce(transform.up * 200);
+            StartCoroutine(c_MoveInInverseSpeed(_ratio, _duration));
         }
+
+        public void Slow(float _slowRatio, float _slowDuration)
+        {
+            ChangeSpeed(-_slowRatio, _slowDuration);
+            m_OnSlow?.Invoke();
+        }
+
+        public void Boost(float _boostRatio, float _boostDuration)
+        {
+            ChangeSpeed(_boostRatio, _boostDuration);
+            m_OnBoost?.Invoke();
+        }
+        
+        public void Stun(float _stunTime)
+        {
+            ChangeSpeed(-1, _stunTime);
+            m_OnStun?.Invoke();
+        }
+
+        private IEnumerator c_MoveInInverseSpeed(float _slowRatio, float _slowDuration)
+        {
+            for (float time = 0; time < _slowDuration; time += Time.deltaTime)
+            {
+                UpdateCurrentPosition(m_PlanetSpeed.Value * _slowRatio);
+                yield return null;
+            }
+        }
+
+        private void UpdateCurrentPosition(float speed)
+        {
+            CurrentPosition += speed * 2 * Time.deltaTime;
+        }
+
+        // public void Jump()
+        // {
+        //     m_Rigidbody.AddForce(transform.up * 200);
+        // }
     }
 }
