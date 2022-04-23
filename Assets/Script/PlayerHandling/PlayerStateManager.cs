@@ -72,6 +72,7 @@ namespace Script.PlayerHandling
             m_Rigidbody = GetComponent<Rigidbody>();
         }
 
+        #if UNITY_EDITOR
         private void OnValidate()
         {
             if (EditorApplication.isPlaying)
@@ -83,6 +84,7 @@ namespace Script.PlayerHandling
                 UpdatePosition();
             }
         }
+        #endif
 
         private void UpdatePosition()
         {

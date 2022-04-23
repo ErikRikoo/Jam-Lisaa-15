@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1605916962537917720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8465921441330256444}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8465921441330256444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1605916962537917720}
+  m_LocalRotation: {x: 0.9099613, y: 0, z: 0, w: 0.41469327}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1888574619699768141}
+  m_Father: {fileID: 5450873952084538102}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5450873951135327809
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5450873951135327811}
   - component: {fileID: 5450873951135327810}
+  - component: {fileID: 7391296596897793814}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -94,6 +127,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &7391296596897793814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5450873951135327809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &5450873952084538101
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +179,7 @@ Transform:
   m_Children:
   - {fileID: 5450873951135327811}
   - {fileID: 5450873952656469437}
-  - {fileID: 1888574619699768141}
+  - {fileID: 8465921441330256444}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -147,6 +200,7 @@ MonoBehaviour:
   m_ObjectToRotate:
   - {fileID: 5450873952656469437}
   - {fileID: 5450873951135327811}
+  - {fileID: 8465921441330256444}
 --- !u!114 &941953961365102901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,14 +241,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8574539795374851924}
-  m_LocalRotation: {x: 0.28752807, y: -0, z: -0, w: -0.9577722}
+  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: -0.52, y: 3.22, z: 5.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5450873952084538102}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 326.58, y: 0, z: 0}
+  m_Father: {fileID: 8465921441330256444}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!108 &5399519450076635706
 Light:
   m_ObjectHideFlags: 0
@@ -288,6 +342,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7641715903789475297, guid: a6f5ce8067531d14896d82c6a88532e7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7667651648328165596, guid: a6f5ce8067531d14896d82c6a88532e7, type: 3}
       propertyPath: m_Name
       value: Planet Pivot
@@ -339,6 +397,10 @@ PrefabInstance:
     - target: {fileID: 7667651649213669239, guid: a6f5ce8067531d14896d82c6a88532e7, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667651650058586391, guid: a6f5ce8067531d14896d82c6a88532e7, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6f5ce8067531d14896d82c6a88532e7, type: 3}
