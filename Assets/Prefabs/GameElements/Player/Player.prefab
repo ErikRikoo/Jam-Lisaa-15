@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 8840402454562530226}
   - component: {fileID: 8840402454562530229}
   - component: {fileID: 8840402454562530228}
+  - component: {fileID: 9214389729591291049}
+  - component: {fileID: 810172389383380681}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -124,7 +126,95 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GravityScale: 9.8
   m_PlanetSpeed: {fileID: 11400000, guid: a43e8bae077f5214ca0daf10e9954000, type: 2}
+  m_OnBoost:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSlow:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnStun:
+    m_PersistentCalls:
+      m_Calls: []
   m_CurrentPosition: 0
+--- !u!114 &9214389729591291049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8840402454562530230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03449e53f436448cb8ebb9473ae14286, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_JumpStrength: 210
+--- !u!114 &810172389383380681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8840402454562530230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 48cc52050b466764497267c4f11d5d06, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9214389729591291049}
+        m_TargetAssemblyTypeName: Script.PlayerHandling.PlayerController, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 35cab279-cf7d-491d-95e8-f21465434048
+    m_ActionName: Main Map/Jump[/Keyboard/w]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9214389729591291049}
+        m_TargetAssemblyTypeName: Script.PlayerHandling.PlayerController, Assembly-CSharp
+        m_MethodName: Crouch
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 468b16df-7a99-49ff-a9dc-cf06f66160cf
+    m_ActionName: Main Map/Crouch[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 44f8f044-199a-4dcf-b4fb-8343f7171953
+    m_ActionName: Main Map/Spell[/Keyboard/e]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Main Map
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &8840402455220790649
 GameObject:
   m_ObjectHideFlags: 0
