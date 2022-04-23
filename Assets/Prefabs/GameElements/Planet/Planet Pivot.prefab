@@ -383,4 +383,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Coordinate: {x: 0.84, y: 13.89}
-  m_Collider: {fileID: 7667651650058586376}
+  Collider: {fileID: 7667651650058586376}

@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 8840402454562530228}
   - component: {fileID: 9214389729591291049}
   - component: {fileID: 810172389383380681}
+  - component: {fileID: 7534166814098055825}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -210,11 +211,60 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 44f8f044-199a-4dcf-b4fb-8343f7171953
     m_ActionName: Main Map/Spell[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 22876ef8-aa8c-42d4-9994-f4ec174dd6c8
+    m_ActionName: Idle/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7534166814098055825}
+        m_TargetAssemblyTypeName: Script.PlayerHandling.LobbyPlayerController, Assembly-CSharp
+        m_MethodName: OnReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7edae80a-d7be-4aac-a88f-7c4a095ee6c7
+    m_ActionName: Menu/Ready[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7534166814098055825}
+        m_TargetAssemblyTypeName: Script.PlayerHandling.LobbyPlayerController, Assembly-CSharp
+        m_MethodName: OnCancelReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c54cdd6b-b1b3-4d4f-b771-7a095f3353e2
+    m_ActionName: Menu/Cancel[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Main Map
+  m_DefaultActionMap: Idle
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7534166814098055825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8840402454562530230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fed85bd87e4e6cbf50e6aadbe59572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RendererToUpdate: {fileID: 8840402455220804228}
 --- !u!1 &8840402455220790649
 GameObject:
   m_ObjectHideFlags: 0

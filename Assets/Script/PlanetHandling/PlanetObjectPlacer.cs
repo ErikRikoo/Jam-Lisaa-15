@@ -17,7 +17,7 @@ namespace PlanetHandling
             }
         }
 
-        [SerializeField] private SphereCollider m_Collider;
+        [SerializeField] public SphereCollider Collider;
         
         private void OnValidate()
         {
@@ -26,12 +26,12 @@ namespace PlanetHandling
 
         private void UpdatePosition()
         {
-            if (m_Collider == null)
+            if (Collider == null)
             {
                 return;
             }
 
-            float radius = m_Collider.transform.lossyScale.x * m_Collider.radius;
+            float radius = Collider.transform.lossyScale.x * Collider.radius;
             var angles = m_Coordinate * Mathf.Deg2Rad;
             Vector3 newPosition = new Vector3(
                 Mathf.Sin(angles.x) * Mathf.Sin(angles.y),
@@ -40,7 +40,7 @@ namespace PlanetHandling
 
             ) * radius;
             transform.position = newPosition;
-            transform.up = newPosition - m_Collider.center;
+            transform.up = newPosition - Collider.center;
         }
         
         

@@ -8,6 +8,8 @@ namespace PlanetHandling
         [Header("Settings")]
         [Range(10, 170)]
         [SerializeField] private float m_Orientation;
+
+        public float Orientation => m_Orientation;
         [SerializeField] private Vector3 m_Axis = new Vector3(0, -1, 0);
         
         [Header("Objects")]
