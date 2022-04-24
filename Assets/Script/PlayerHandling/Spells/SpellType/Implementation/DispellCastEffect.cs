@@ -7,7 +7,6 @@ namespace Script.PlayerHandling.Spells.SpellType
     {
         [SerializeField] private float m_EffectDuration;
         
-        
         public override void CastSpell(SpellHandler spellHandler)
         {
             spellHandler.GetComponent<PlayerStateManager>().DispellDuring(m_EffectDuration);

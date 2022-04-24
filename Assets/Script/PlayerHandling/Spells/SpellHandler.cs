@@ -4,6 +4,7 @@ using System.Linq;
 using Script.PlayerHandling.Spells.SpellType;
 using Script.Utilities;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,8 @@ namespace Script.PlayerHandling.Spells
 {
     public class SpellHandler : MonoBehaviour
     {
+        [SerializeField] private float m_MinImageScale = 0.1f;
+        
         [Min(0)]
         [SerializeField] private float m_Cooldown;
         
@@ -22,6 +25,9 @@ namespace Script.PlayerHandling.Spells
         private bool m_CanCast = true;
         
         private ImageHolder m_ImageHolder;
+
+        private float m_CurrentCooldownTime;
+        private bool m_Rerolling;
 
 
         public void Bind(ImageHolder _holder)
@@ -53,7 +59,6 @@ namespace Script.PlayerHandling.Spells
             int index = 0;
             int end = m_Order.Length - m_CurrentPosition;
             
-            Debug.Log(end);
             for (; index < end; ++index)
             {
                 m_ImageHolder.Images[index].sprite = m_SpellCollection[m_Order[index + m_CurrentPosition]].Image;
@@ -66,40 +71,75 @@ namespace Script.PlayerHandling.Spells
             }
         }
 
-        public void CastSpell(bool _consumeSpell = true)
+        public void RemoveSpell(InputAction.CallbackContext _context)
         {
-            if (!m_CanCast)
+            if (_context.phase != InputActionPhase.Started)
+            {
+                return;
+            }
+            
+            if (m_Rerolling)
             {
                 return;
             }
 
-            if (_consumeSpell)
-            {
-                m_SpellCollection[m_Order[m_CurrentPosition]].CastSpell(this);
-            }
-            
-            m_CanCast = false;
+            m_CurrentCooldownTime = 0;
+            CheckIfShouldReroll();
+        }
+
+        private void CheckIfShouldReroll()
+        {
             ++m_CurrentPosition;
             UpdateDisplay();
+            StopAllCoroutines();
             if (m_CurrentPosition >= m_SpellCollection.Count)
             {
-                StartCoroutine(c_Cooldown(() =>
-                {
-                    m_CurrentPosition = 0;
-                    Reroll();
-                }));
-
+                m_CurrentPosition = 0;
+                m_Rerolling = true;
+                Reroll();
+                StartCoroutine(c_Cooldown(() => m_Rerolling = false));
                 return;
             }
             
             StartCoroutine(c_Cooldown());
         }
 
+        public void CastSpell()
+        {
+            if (!m_CanCast)
+            {
+                return;
+            }
+            m_SpellCollection[m_Order[m_CurrentPosition]].CastSpell(this);
+            
+            CheckIfShouldReroll();
+        }
+
         private IEnumerator c_Cooldown(Action _endOfCooldownEffect = null)
         {
-            yield return new WaitForSeconds(m_Cooldown);
+            m_CanCast = false;
+            float inverseDuration = 1 / m_Cooldown;
+            for (m_CurrentCooldownTime = 0; m_CurrentCooldownTime < m_Cooldown; m_CurrentCooldownTime += Time.deltaTime)
+            {
+                UpdateImages(m_CurrentCooldownTime * inverseDuration);
+                yield return null;
+            }
+            
             m_CanCast = true;
             _endOfCooldownEffect?.Invoke();
+            m_Rerolling = false;
+        }
+
+        private void UpdateImages(float _ratio)
+        {
+            int index = 0;
+            int end = m_Order.Length - m_CurrentPosition;
+            
+            for (; index < end; ++index)
+            {
+                m_ImageHolder.Images[index].transform.localScale = Vector3.one *
+                                                                   Mathf.LerpUnclamped(m_MinImageScale, 1, _ratio);
+            }
         }
     }
 }
