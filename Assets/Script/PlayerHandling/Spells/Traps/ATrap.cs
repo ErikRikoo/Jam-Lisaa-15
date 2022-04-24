@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using EditorUtilities.Editor.Attributes.AbstractReference;
 using PlanetHandling;
 using Script.PlayerHandling.Spells.SpellType;
@@ -16,6 +17,9 @@ namespace Script.PlayerHandling.Spells.Traps
         [SerializeField] private bool m_FriendlyFire = true;
         
         [SerializeField] private float m_DelayBeforeEffect = 1;
+
+        [SerializeField] private AudioSource[] m_AudioSource;
+        
         
         private SpellHandler m_Caster;
         private Collider m_Collider;
@@ -58,7 +62,24 @@ namespace Script.PlayerHandling.Spells.Traps
             }
             
             m_Effect.Effect(other.gameObject, m_Spell);
+            m_Collider.enabled = false;
+            foreach (var componentsInChild in GetComponentsInChildren<MeshRenderer>())
+            {
+                componentsInChild.enabled = false;
+            }
+
+            StartCoroutine(c_DestroyAfter(m_AudioSource.Max(audioSOurce => audioSOurce.clip.length)));
+            foreach (var audioSource in m_AudioSource)
+            {
+                audioSource?.Play();
+            }
+        }
+
+        private IEnumerator c_DestroyAfter(float clipLength)
+        {
+            yield return new WaitForSeconds(clipLength + 0.1f);
             Destroy(gameObject);
+
         }
     }
 }

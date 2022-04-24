@@ -10,6 +10,9 @@ namespace Script.PlayerHandling
         [Header("Settings")]
         [SerializeField] private float m_JumpStrength;
 
+        [SerializeField] private Animator m_Animator;
+        
+
         private Rigidbody m_RigidBody;
 
         private bool m_IsGrounded = true;
@@ -27,6 +30,7 @@ namespace Script.PlayerHandling
             }
             m_RigidBody.AddForce(transform.up * m_JumpStrength);
             m_IsGrounded = false;
+            m_Animator.SetTrigger("Jump");
         }
 
         private void OnCollisionEnter(Collision other)

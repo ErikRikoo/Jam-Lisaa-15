@@ -18,6 +18,9 @@ namespace Script.PlayerHandling.Spells
         [SerializeField] private float m_Cooldown;
         
         [SerializeField] private SpellCollection m_SpellCollection;
+
+        [SerializeField] private AudioSource m_AudioSource;
+        
         
         private int[] m_Order;
         private int m_CurrentPosition;
@@ -113,6 +116,7 @@ namespace Script.PlayerHandling.Spells
             m_SpellCollection[m_Order[m_CurrentPosition]].CastSpell(this);
             
             CheckIfShouldReroll();
+            m_AudioSource?.Play();
         }
 
         private IEnumerator c_Cooldown(Action _endOfCooldownEffect = null)

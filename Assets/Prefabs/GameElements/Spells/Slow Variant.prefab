@@ -7,10 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1369240297023484945, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 01e692c74fe183f4ea7948f5e85f2ae5, type: 3}
+    - target: {fileID: 5669981361058401882, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 3826620698393572465, guid: 4c1f301d303c73149b3def547e9dc806, type: 3}
     - target: {fileID: 5669981361058401883, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 024cfe6507c919042b7957633554f971, type: 2}
+      objectReference: {fileID: 2100000, guid: 76dd29c3512062041801989d6750fa94, type: 2}
     - target: {fileID: 5669981361666056641, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
       propertyPath: m_Effect
       value: 5102465680625631233
@@ -22,6 +30,18 @@ PrefabInstance:
     - target: {fileID: 5669981361666056643, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669981361666056643, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669981361666056643, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669981361666056643, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5669981361666056643, guid: c293e09b0f8984447a827ab7bb193473, type: 3}
       propertyPath: m_LocalPosition.x

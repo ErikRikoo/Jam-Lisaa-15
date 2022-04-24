@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Dispell Effect
   m_EditorClassIdentifier: 
   m_Image: {fileID: 21300000, guid: bd362c6c6c1845a43b920c683712a04f, type: 3}
-  m_EffectDuration: 0
+  m_EffectDuration: 1

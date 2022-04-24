@@ -22,6 +22,7 @@ namespace Script.PlayerHandling
         [SerializeField] private float[] m_LatitudeOffsets;
         [SerializeField] private InputActionTextBinder[] m_TextBinders;
         [SerializeField] private ImageHolder[] m_PlayerUI;
+        [SerializeField] private string[] m_Names = new []{"Day", "Night"};
         
         
         [SerializeField] private Transform m_Parent;
@@ -143,6 +144,7 @@ namespace Script.PlayerHandling
             m_Players.Add(_input);
             lobbyPlayer.transform.parent = m_Parent;
             lobbyPlayer.BindToHandler(this, m_PlayerColors[m_PlayerCount], m_TextBinders[m_PlayerCount], _input);
+            lobbyPlayer.Name = m_Names[m_PlayerCount];
             var objectPlacer = _input.GetComponent<PlanetObjectPlacer>();
             objectPlacer.Collider = m_PlanetCollider;
             objectPlacer.Latitude = m_Planet.Orientation + m_LatitudeOffsets[m_PlayerCount];

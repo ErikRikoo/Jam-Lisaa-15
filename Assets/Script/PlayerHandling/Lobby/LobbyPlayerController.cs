@@ -16,6 +16,7 @@ namespace Script.PlayerHandling
         private Vector3 m_OriginalScale;
         private InputActionTextBinder m_InputActionBinder;
         private PlayerInput m_Input;
+        public string Name;
 
         private void Awake()
         {
