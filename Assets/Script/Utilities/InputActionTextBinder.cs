@@ -20,7 +20,6 @@ namespace Script.Utilities
 
         public void Bind(PlayerInput _input)
         {
-            Debug.Log("Called");
             string key = _input.currentControlScheme switch
             {
                 "Gamepad" => m_GamePadKey,

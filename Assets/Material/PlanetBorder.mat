@@ -36,8 +36,8 @@ Material:
     m_Floats:
     - _Emission_Intensity: 1.21
     - _Fresnel_Intensity: 5.85
-    - _Offset: 0.01
-    - _Opacity: 0.56
+    - _Offset: 0.000001
+    - _Opacity: 0.7
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

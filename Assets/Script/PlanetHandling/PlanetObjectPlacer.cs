@@ -17,6 +17,16 @@ namespace PlanetHandling
             }
         }
 
+        public Vector2 Coordinate
+        {
+            get => m_Coordinate;
+            set
+            {
+                m_Coordinate = value;
+                UpdatePosition();
+            }
+        }
+
         [SerializeField] public SphereCollider Collider;
         
         private void OnValidate()

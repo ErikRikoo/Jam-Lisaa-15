@@ -37,6 +37,8 @@ namespace Script.PlayerHandling
         [SerializeField,Range(-1, 1)] 
         private float m_CurrentPosition;
 
+        private bool m_Protected;
+
         public float CurrentPosition
         {
             get => m_CurrentPosition;
@@ -99,7 +101,7 @@ namespace Script.PlayerHandling
 
         public void Slow(float _slowRatio, float _slowDuration)
         {
-            if (m_State == State.Boosted || m_State == State.Stunned)
+            if (m_State == State.Boosted || m_State == State.Stunned || m_Protected)
             {
                 return;
             }
@@ -120,7 +122,7 @@ namespace Script.PlayerHandling
         
         public void Stun(float _stunTime)
         {
-            if (m_State == State.Boosted)
+            if (m_State == State.Boosted || m_Protected)
             {
                 return;
             }
@@ -144,6 +146,22 @@ namespace Script.PlayerHandling
         private void UpdateCurrentPosition(float speed)
         {
             CurrentPosition += speed * 2 * Time.deltaTime;
+        }
+
+        public void DispellDuring(float _duration)
+        {
+            if (m_State == State.Slow || m_State == State.Stunned)
+            {
+                StopAllCoroutines();
+            }
+            m_Protected = true;
+            StartCoroutine(c_EndOfDispell(_duration));
+        }
+
+        private IEnumerator c_EndOfDispell(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            m_Protected = false;
         }
     }
 }

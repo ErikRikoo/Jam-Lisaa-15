@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using PlanetHandling;
+using Script.PlayerHandling.Spells;
 using Script.Utilities;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
@@ -20,6 +21,8 @@ namespace Script.PlayerHandling
         [SerializeField] private Color[] m_PlayerColors;
         [SerializeField] private float[] m_LatitudeOffsets;
         [SerializeField] private InputActionTextBinder[] m_TextBinders;
+        [SerializeField] private ImageHolder[] m_PlayerUI;
+        
         
         [SerializeField] private Transform m_Parent;
         [SerializeField] private int m_StartTimerDuration;
@@ -160,9 +163,12 @@ namespace Script.PlayerHandling
         private void StartGame()
         {
             m_GameStarted?.Raise();
+            int index = 0;
             foreach (var player in m_Players)
             {
                 EnableGameplayInputs(player);
+                player.GetComponent<SpellHandler>().Bind(m_PlayerUI[index]);
+                ++index;
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace Script.PlayerHandling.Spells.SpellType
@@ -7,6 +8,7 @@ namespace Script.PlayerHandling.Spells.SpellType
     [CreateAssetMenu(fileName = "SpellCollection", menuName = "Player/Spells/Collection", order = 0)]
     public class SpellCollection : ScriptableObject, IEnumerable<ASpellType>
     {
+        [Expandable]
         [SerializeField] private ASpellType[] m_Spells;
 
         public int Count => m_Spells.Length;

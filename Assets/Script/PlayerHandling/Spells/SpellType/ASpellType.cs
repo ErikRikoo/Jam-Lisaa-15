@@ -8,5 +8,6 @@ namespace Script.PlayerHandling.Spells.SpellType
 
         public Sprite Image => m_Image;
 
+        public abstract void CastSpell(SpellHandler spellHandler);
     }
 }

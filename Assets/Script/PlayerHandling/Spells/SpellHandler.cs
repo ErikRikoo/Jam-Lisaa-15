@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using Script.PlayerHandling.Spells.SpellType;
+using Script.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Script.PlayerHandling.Spells
 {
@@ -12,24 +15,19 @@ namespace Script.PlayerHandling.Spells
         [SerializeField] private float m_Cooldown;
         
         [SerializeField] private SpellCollection m_SpellCollection;
-        [SerializeField] private Image m_Prefab;
-        [SerializeField] private Transform m_Placeholder;
-        
-        
-        private Image[] m_Displays;
         
         private int[] m_Order;
         private int m_CurrentPosition;
 
         private bool m_CanCast = true;
+        
+        private ImageHolder m_ImageHolder;
 
-        private void Awake()
+
+        public void Bind(ImageHolder _holder)
         {
-            m_Displays = new Image[m_SpellCollection.Count];
-            for (var i = 0; i < m_Displays.Length; i++)
-            {
-                m_Displays[i] = Instantiate(m_Prefab, m_Placeholder);
-            }
+            m_ImageHolder = _holder;
+            m_ImageHolder.gameObject.SetActive(true);
             Reroll();
         }
 
@@ -47,40 +45,61 @@ namespace Script.PlayerHandling.Spells
 
         private void UpdateDisplay()
         {
-            if (m_Displays.Length != m_SpellCollection.Count)
+            if (m_ImageHolder.Images.Length != m_SpellCollection.Count)
             {
                 return;
             }
 
             int index = 0;
             int end = m_Order.Length - m_CurrentPosition;
+            
+            Debug.Log(end);
             for (; index < end; ++index)
             {
-                m_Displays[index].sprite = m_SpellCollection[m_Order[index + m_CurrentPosition]].Image;
+                m_ImageHolder.Images[index].sprite = m_SpellCollection[m_Order[index + m_CurrentPosition]].Image;
+                m_ImageHolder.Images[index].gameObject.SetActive(true);
             }
 
             for (; index < m_Order.Length; ++index)
             {
-                m_Displays[index].gameObject.SetActive(false);
+                m_ImageHolder.Images[index].gameObject.SetActive(false);
             }
         }
 
-        public void CastSpell()
+        public void CastSpell(bool _consumeSpell = true)
         {
             if (!m_CanCast)
             {
                 return;
             }
 
+            if (_consumeSpell)
+            {
+                m_SpellCollection[m_Order[m_CurrentPosition]].CastSpell(this);
+            }
+            
             m_CanCast = false;
             ++m_CurrentPosition;
+            UpdateDisplay();
+            if (m_CurrentPosition >= m_SpellCollection.Count)
+            {
+                StartCoroutine(c_Cooldown(() =>
+                {
+                    m_CurrentPosition = 0;
+                    Reroll();
+                }));
+
+                return;
+            }
+            
             StartCoroutine(c_Cooldown());
         }
 
-        private IEnumerator c_Cooldown()
+        private IEnumerator c_Cooldown(Action _endOfCooldownEffect = null)
         {
             yield return new WaitForSeconds(m_Cooldown);
             m_CanCast = true;
+            _endOfCooldownEffect?.Invoke();
         }
     }
 }

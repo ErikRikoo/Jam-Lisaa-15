@@ -17,6 +17,7 @@
     }
   ],
   "dependencies": {
+    "com.dbrizov.naughtyattributes": "https://github.com/dbrizov/NaughtyAttributes.git#upm",
     "com.rikoo.editor-utilities": "https://github.com/ErikRikoo/com.rikoo.editor-utilities.git",
     "com.rikoo.interface-utilities": "https://github.com/ErikRikoo/com.rikoo.interface-utilities.git",
     "com.unity-atoms.unity-atoms-base-atoms": "4.4.3",

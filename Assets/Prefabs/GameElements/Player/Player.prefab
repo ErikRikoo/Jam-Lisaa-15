@@ -48,9 +48,11 @@ GameObject:
   - component: {fileID: 9214389729591291049}
   - component: {fileID: 810172389383380681}
   - component: {fileID: 7534166814098055825}
+  - component: {fileID: 3183548338351095114}
+  - component: {fileID: 6885563189917751325}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Coordinate: {x: 57.4, y: 0}
-  m_Collider: {fileID: 0}
+  Collider: {fileID: 0}
 --- !u!54 &8840402454562530226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -208,7 +210,19 @@ MonoBehaviour:
     m_ActionId: 468b16df-7a99-49ff-a9dc-cf06f66160cf
     m_ActionName: Main Map/Crouch[/Keyboard/s]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3183548338351095114}
+        m_TargetAssemblyTypeName: Script.PlayerHandling.Spells.SpellHandler, Assembly-CSharp
+        m_MethodName: CastSpell
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_ActionId: 44f8f044-199a-4dcf-b4fb-8343f7171953
     m_ActionName: Main Map/Spell[/Keyboard/e]
   - m_PersistentCalls:
@@ -247,6 +261,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c54cdd6b-b1b3-4d4f-b771-7a095f3353e2
     m_ActionName: Menu/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3183548338351095114}
+        m_TargetAssemblyTypeName: Script.PlayerHandling.Spells.SpellHandler, Assembly-CSharp
+        m_MethodName: CastSpell
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 71aba8f9-bc59-40e8-b1a6-96be8f74c4fa
+    m_ActionName: Gameplay/RemoveSpell[/Keyboard/q,/XInputControllerWindows/leftShoulder,/XInputControllerWindows1/leftShoulder,/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Idle
@@ -265,6 +295,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RendererToUpdate: {fileID: 8840402455220804228}
+--- !u!114 &3183548338351095114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8840402454562530230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d35858dd904df0a5b326d6bcf57ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Cooldown: 1
+  m_SpellCollection: {fileID: 11400000, guid: d3c9c84ed9155e94a9ee9954dfe91956, type: 2}
+--- !u!65 &6885563189917751325
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8840402454562530230}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.20289508, y: 0.20133927, z: 0.20245296}
+  m_Center: {x: 0.0032141954, y: 0.100671664, z: 0.000106937085}
 --- !u!1 &8840402455220790649
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +333,6 @@ GameObject:
   - component: {fileID: 8840402455220804230}
   - component: {fileID: 8840402455220804229}
   - component: {fileID: 8840402455220804228}
-  - component: {fileID: 8840402455220804231}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -349,16 +405,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8840402455220804231
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8840402455220790649}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
